@@ -44,7 +44,7 @@
 
 						<!-- Thumbnails -->
 							<section class="thumbnails">
-								<div>
+								<div id='imageColumn1'>
 									<a href="images/ivity/stone1.jpg" style='padding-left:1px;padding-right:1px'>
 										<div class='etsyLink'>
 											View on Etsy
@@ -67,7 +67,7 @@
 										<h3>Tree of life</h3>
 									</a>
 								</div>
-								<div>
+								<div id='imageColumn2'>
 									<a href="images/ivity/stone3.jpg" style='padding-left:1px;padding-right:1px'>
 										<div class='etsyLink'>
 											View on Etsy
@@ -83,7 +83,7 @@
 										<h3>Can you say 'intricate'?</h3>
 									</a>
 								</div>
-								<div>
+								<div id='imageColumn3'>
 									<a href="images/ivity/stone6.jpg" style='padding-left:1px;padding-right:1px'>
 										<div class='etsyLink'>
 											View on Etsy
@@ -294,6 +294,31 @@
 		});
 	});
 	var dog;
+	function processText(text){
+		text = text.split('\n');
+		var templates = [];
+		var column = 1;
+		for (var x = 0; x < text.length; x+=2){
+				if (x != (text.length-1)){
+					templates.push(createTemplate(text[x],text[x+1]));
+				}
+		}
+		for (var y = 0; y < templates.length; y++){
+			document.getElementById(`imageColumn${column}`).innerHTML += templates[y];
+			column < 3 ? column++ : column = 1;
+		}
+	}
+	function createTemplate(image,description){
+		return `
+		<a href="images/ivity/${image}" style='padding-left:1px;padding-right:1px'>
+			<div class='etsyLink'>
+				View on Etsy
+			</div>
+			<img src="images/ivity/${image}" alt="" />
+			<h3>${description}</h3>
+		</a>
+		`;
+	}
 	function readTextFile(file)
 	{
 	    var rawFile = new XMLHttpRequest();
