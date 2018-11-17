@@ -293,6 +293,7 @@
 			window.open('https://www.etsy.com/shop/ivitycreations');
 		});
 	});
+	var dog;
 	function readTextFile(file)
 	{
 	    var rawFile = new XMLHttpRequest();
@@ -305,6 +306,7 @@
 	            {
 	                var allText = rawFile.responseText;
 	                console.log(allText);
+									dog = allText;
 	            }
 	        }
 	    }
