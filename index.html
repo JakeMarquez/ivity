@@ -26,13 +26,16 @@
 							to cherish for years to come!
 						</h1>
 						<ul class="icons">
-							<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+							<!-- <li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li> -->
 							<li><a href="https://www.facebook.com/IvityCreations/" class="icon style2 fa-facebook">
 								<span class="label">Facebook</span></a>
 							</li>
-							<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
-							<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+							<li><a href="https://www.instagram.com/ivity_creations" class="icon style2 fa-instagram">
+								<span class="label">Instagram</span></a></li>
+							<li><a href="tel:7022680029" class="icon style2 fa-phone">
+								<span class="label">Phone</span></a></li>
+							<li><a href="mailto:Ivitycreations@gmail.com" class="icon style2 fa-envelope-o">
+								<span class="label">Email</span></a></li>
 						</ul>
 						<nav>
 							<a id='inventoryButton' href="#">Inventory</a>
@@ -44,7 +47,14 @@
 
 				<!-- Main -->
 					<section id="main">
-
+							<div id='noContentPanel' class='tutorialPost'>
+								<h2 style='text-align:center' class='quote'>Stay Tuned</h2>
+								<p style='margin-bottom:1rem;text-align:justify' class='quote'>
+										There are no peices currently for sale. You can always reach out to commision a custom peice
+										with the contact information above. If you are looking for inspiration check out the 
+										<a href="#">Past Work</a> page.
+								</p>
+							</div>
 						<!-- Thumbnails -->
 							<section class="thumbnails">
 								<div id='imageColumn1'>
@@ -441,6 +451,12 @@
 		for (var y = 0; y < templates.length; y++){
 			document.getElementById(`imageColumn${column}`).innerHTML += templates[y];
 			column < 3 ? column++ : column = 1;
+		}
+		if (templates.length > 0){
+			document.getElementById("noContentPanel").display = "none";
+		} else {
+			// make the past work page the first page that loads if inventory empty
+			document.getElementById("pastWorkButton").click();
 		}
 	}
 	function createTemplate(image,description){
