@@ -50,9 +50,9 @@
 							<div id='noContentPanel' class='tutorialPost'>
 								<h2 style='text-align:center' class='quote'>Stay Tuned</h2>
 								<p style='margin-bottom:1rem;text-align:justify' class='quote'>
-										There are no peices currently for sale. You can always reach out to commision a custom peice
+										There are no pieces currently for sale. You can always reach out to commision a custom piece
 										with the contact information above. If you are looking for inspiration check out the 
-										<a href="#">Past Work</a> page.
+										<a id='noContentLink' href="#">Past Work</a> page.
 								</p>
 							</div>
 						<!-- Thumbnails -->
@@ -208,9 +208,9 @@
 						<div class='tutorialPost'>
  						 <h1 class='availableClasses' style='font-weight:bold'>Reviews</h1>
  					  </div>
-						<div class='tutorialPost'>
+						<div class='tutorialPost reviewsSection'>
 							<div class='thumbnails' style='margin:0px;'>
-								<a href='images/ivity/dragon.jpg' style='margin:0px!important'>
+								<a href='images/ivity/dragon.jpg'>
 									<img src='images/ivity/dragon.jpg' style='width:100%;height:auto'/>
 								</a>
 							</div>
@@ -227,9 +227,9 @@
 								 -Thomas Laisney
 			        </p>
 						</div>
-						<div class='tutorialPost'>
+						<div class='tutorialPost reviewsSection'>
 								<div class='thumbnails' style='margin:0px;'>
-									<a href='images/ivity/stone5.jpg' style='margin:0px!important'>
+									<a href='images/ivity/stone5.jpg' >
 										<img src='images/ivity/stone5.jpg' style='width:100%;height:auto'/>
 									</a>
 								</div>
@@ -248,9 +248,9 @@
 										-Desmond Krahn
 								</p>
 							</div>
-						<div class='tutorialPost'>
+						<div class='tutorialPost reviewsSection'>
 							<div class='thumbnails' style='margin:0px;'>
-								<a href='images/ivity/review3.jpg' style='margin:0px!important'>
+								<a href='images/ivity/review3.jpg' >
 									<img src='images/ivity/review3.jpg' style='width:100%;height:auto'/>
 								</a>
 							</div>
@@ -413,6 +413,16 @@
 			font-weight: bold;
       text-shadow: 0px 0px white;
 		}
+		.reviewsSection a{
+			margin:0px !important;
+		}
+		@media(min-width:767px){
+			.reviewsSection a{
+				max-width: 30rem;
+				margin-left:auto!important;
+				margin-right:auto!important;
+			}
+		}
 	</style>
 	<script>
 	document.getElementById('inventoryButton').addEventListener('click',(e)=>{
@@ -438,7 +448,9 @@
 			window.open('https://www.etsy.com/shop/ivitycreations');
 		});
 	});
-	var dog;
+	document.getElementById('noContentLink').addEventListener('click',()=>{
+		document.getElementById("pastWorkButton").click();		
+	})
 	function processText(text){
 		text = text.split('\n');
 		var templates = [];
@@ -482,7 +494,6 @@
 	            {
 	                var allText = rawFile.responseText;
 	                console.log(allText);
-									dog = allText;
 									processText(allText);
 	            }
 	        }
