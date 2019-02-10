@@ -430,16 +430,28 @@
 		document.getElementById('main').style.display = 'block';
 		document.getElementById('main2').style.display = 'none';
 		document.getElementById('main3').style.display = 'none';
+		["inventoryButton","pastWorkButton","tutorialsButton"].forEach((btn)=>{
+			document.getElementById(btn).classList.remove("quote");
+		});
+		document.getElementById('inventoryButton').classList.add("quote");
 	});
 	document.getElementById('pastWorkButton').addEventListener('click',()=>{
 		document.getElementById('main').style.display = 'none';
 		document.getElementById('main2').style.display = 'block';
 		document.getElementById('main3').style.display = 'none';
+		["inventoryButton","pastWorkButton","tutorialsButton"].forEach((btn)=>{
+			document.getElementById(btn).classList.remove("quote");
+		});
+		document.getElementById('pastWorkButton').classList.add("quote");
 	});
 	document.getElementById('tutorialsButton').addEventListener('click',()=>{
 		document.getElementById('main').style.display = 'none';
 		document.getElementById('main2').style.display = 'none';
 		document.getElementById('main3').style.display = 'block';
+		["inventoryButton","pastWorkButton","tutorialsButton"].forEach((btn)=>{
+			document.getElementById(btn).classList.remove("quote");
+		});
+		document.getElementById('tutorialsButton').classList.add("quote");
 	});
 	document.getElementById('noContentLink').addEventListener('click',()=>{
 		document.getElementById("pastWorkButton").click();		
