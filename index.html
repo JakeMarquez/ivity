@@ -441,49 +441,12 @@
 		document.getElementById('main2').style.display = 'none';
 		document.getElementById('main3').style.display = 'block';
 	});
-	document.getElementById('inventoryButton').click();
-	var etsy = document.querySelectorAll(".etsyLink");
-	etsy.forEach((elem)=>{
-		elem.addEventListener('click',()=>{
-			window.open('https://www.etsy.com/shop/ivitycreations');
-		});
-	});
 	document.getElementById('noContentLink').addEventListener('click',()=>{
 		document.getElementById("pastWorkButton").click();		
 	})
-	function processText(text){
-		text = text.split('\n');
-		var templates = [];
-		var column = 1;
-		for (var x = 0; x < text.length; x+=2){
-				if (x != (text.length-1)){
-					templates.push(createTemplate(text[x],text[x+1]));
-				}
-		}
-		for (var y = 0; y < templates.length; y++){
-			document.getElementById(`imageColumn${column}`).innerHTML += templates[y];
-			column < 3 ? column++ : column = 1;
-		}
-		if (templates.length > 0){
-			document.getElementById("noContentPanel").style.display = "none";
-		} else {
-			// make the past work page the first page that loads if inventory empty
-			document.getElementById("pastWorkButton").click();
-		}
-	}
-	function createTemplate(image,description){
-		return `
-		<a href="images/ivity/${image}" style='padding-left:1px;padding-right:1px'>
-			<div class='etsyLink'>
-				View on Etsy
-			</div>
-			<img src="images/ivity/${image}" alt="" />
-			<h3>${description}</h3>
-		</a>
-		`;
-	}
-	function readTextFile(file)
-	{
+	document.getElementById('inventoryButton').click();
+	readTextFile("descriptions.txt");
+	function readTextFile(file) {
 	    var rawFile = new XMLHttpRequest();
 	    rawFile.open("GET", file, false);
 	    rawFile.onreadystatechange = function ()
@@ -500,6 +463,46 @@
 	    }
 	    rawFile.send(null);
 	}
-	readTextFile("descriptions.txt");
+	function processText(text){
+		text = text.split('\n');
+		var templates = [];
+		var column = 1;
+		for (var x = 0; x < text.length; x+=3){
+				if (x != (text.length-1)){
+					templates.push(createTemplate(text[x],text[x+1],text[x+2]));
+				}
+		}
+		for (var y = 0; y < templates.length; y++){
+			document.getElementById(`imageColumn${column}`).innerHTML += templates[y];
+			column < 3 ? column++ : column = 1;
+		}
+		if (templates.length > 0){
+			document.getElementById("noContentPanel").style.display = "none";
+			setEtsyLinks();
+		} else {
+			// make the past work page the first page that loads if inventory empty
+			document.getElementById("pastWorkButton").click();
+		}
+	}
+	function createTemplate(image,description,url){
+		return `
+		<a href="images/ivity/${image}" style='padding-left:1px;padding-right:1px'>
+			<div class='etsyLink' data-url='${url}'>
+				View on Etsy
+			</div>
+			<img src="images/ivity/${image}" alt="" />
+			<h3>${description}</h3>
+		</a>
+		`;
+	}
+	function setEtsyLinks(){
+		var etsy = document.querySelectorAll(".etsyLink");
+		etsy.forEach((elem)=>{
+			var url = elem.getAttribute("data-url");
+			elem.addEventListener('click',()=>{
+				window.open(url);
+			});
+		});
+	}
 	</script>
 </html>
